@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import App from './App.jsx';
-import './index.scss';
-import { router } from './router/router.jsx';
-import { AuthProvider } from './context/AuthProvider.jsx';
 import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
+import { AuthProvider } from './Context/AuthProvider.jsx';
+import './index.scss';
 import { store } from './redux/store.js';
+import { router } from './router/router.jsx';
 
 // const router = createBrowserRouter([
 // 	{

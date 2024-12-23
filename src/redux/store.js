@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from './slices/userSlice'
 import { eventSlice } from './slices/eventSlice'
 import { clubSlice } from './slices/clubSlice'
-import { travelSlice } from './slices/TravelSlice'
+import { travelSlice } from './slices/travelSlice'
 import { adminSlice } from './slices/adminSlice'
 
 export const store = configureStore({
