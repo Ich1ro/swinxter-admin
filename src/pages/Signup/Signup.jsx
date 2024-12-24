@@ -4,8 +4,8 @@ import s from './styles.module.scss';
 import { useAuth } from '../../hooks/AuthHook';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-	const { login, currentUser } = useAuth();
+const Signup = () => {
+	const { register, currentUser } = useAuth();
 	const [details, setDetails] = useState({
 		username: '',
 		password: '',
@@ -14,7 +14,15 @@ const Login = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		await login(details);
+		await register({
+			...details,
+			name: details.username,
+			events: true,
+			situationships: true,
+			clubs: true,
+			users: true,
+			admins: true,
+		});
 		navigate('/');
 	};
 
@@ -27,7 +35,7 @@ const Login = () => {
 	return (
 		<div className={s.login}>
 			<form action='' onSubmit={handleSubmit}>
-				<h3>Login</h3>
+				<h3>Sign Up</h3>
 				<input
 					type='text'
 					placeholder='Username'
@@ -42,10 +50,10 @@ const Login = () => {
 						setDetails(prev => ({ ...prev, password: e.target.value }))
 					}
 				/>
-				<button type='submit'>Login</button>
+				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default Signup;

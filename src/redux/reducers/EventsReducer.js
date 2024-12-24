@@ -13,6 +13,18 @@ export const getEvents = createAsyncThunk('events', async () => {
 	}
 });
 
+export const getEventById = createAsyncThunk('eventById', async (data) => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_event/${data.id}`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 export const suspendOrApproveEvent = createAsyncThunk(
 	'suspend_or_approve_event',
 	async (data, { rejectWithValue }) => {

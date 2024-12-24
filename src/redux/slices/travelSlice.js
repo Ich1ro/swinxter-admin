@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteTravel, getTravels, suspendOrApproveTravel } from '../reducers/TravelsReducer'
+import { deleteTravel, getTravelById, getTravels, suspendOrApproveTravel } from '../reducers/TravelsReducer'
 
 const initialState = {
 	travels: [],
+	travel: null,
 	loading: false,
 	error: null,
 };
@@ -23,6 +24,21 @@ export const travelSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(getTravels.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//get travel by id
+
+		builder.addCase(getTravelById.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(getTravelById.fulfilled, (state, action) => {
+			state.loading = false;
+			state.travel = action.payload;
+			state.error = false;
+		});
+		builder.addCase(getTravelById.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});

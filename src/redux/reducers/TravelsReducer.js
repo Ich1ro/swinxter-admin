@@ -15,6 +15,18 @@ export const getTravels = createAsyncThunk('travels', async () => {
 	}
 });
 
+export const getTravelById = createAsyncThunk('travelById', async (data) => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/travel/${data.id}`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 export const suspendOrApproveTravel = createAsyncThunk(
 	'suspend_or_approve_travel',
 	async (data, { rejectWithValue }) => {

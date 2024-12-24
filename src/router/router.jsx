@@ -7,6 +7,11 @@ import Events from '../components/Events/Events.jsx'
 import Clubs from '../components/Clubs/Clubs.jsx'
 import Admins from '../components/Admins/Admins.jsx'
 import Travels from '../components/Travels/Travels.jsx'
+import Signup from '../pages/Signup/Signup.jsx'
+import UserDetails from '../components/Users/id/UserDetails.jsx'
+import EventDetails from '../components/Events/id/EventDetails.jsx'
+import ClubDetails from '../components/Clubs/id/ClubDetails.jsx'
+import TravelDetails from '../components/Travels/id/TravelDetails.jsx'
 
 export const router = createBrowserRouter([
 	{
@@ -20,18 +25,40 @@ export const router = createBrowserRouter([
 			{
 				path: 'users',
 				element: <Users />,
+				children: [
+					{
+						path: ':id',
+						element: <UserDetails />,
+					}
+				]
+			},
+			{
+				path: 'user/:id',
+				element: <UserDetails />,
 			},
 			{
 				path: 'events',
 				element: <Events />,
 			},
 			{
+				path: 'event/:id',
+				element: <EventDetails />,
+			},
+			{
 				path: 'clubs',
 				element: <Clubs />,
 			},
 			{
+				path: 'club/:id',
+				element: <ClubDetails />,
+			},
+			{
 				path: 'travels',
 				element: <Travels />,
+			},
+			{
+				path: 'travel/:id',
+				element: <TravelDetails />,
 			},
 			{
 				path: 'admins',
@@ -42,6 +69,10 @@ export const router = createBrowserRouter([
 	{
 		path: 'login',
 		element: <Login />,
+	},
+	{
+		path: 'signup',
+		element: <Signup />,
 	},
 	// {
 	// 	path: '/',

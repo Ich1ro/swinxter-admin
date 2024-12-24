@@ -13,6 +13,18 @@ export const getClubs = createAsyncThunk('clubs', async () => {
 	}
 });
 
+export const getClubById = createAsyncThunk('clubById', async (data) => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/getClub/${data.id}`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 export const suspendOrApproveClub = createAsyncThunk(
 	'suspend_or_approve_club',
 	async (data, { rejectWithValue }) => {

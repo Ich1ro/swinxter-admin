@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteEvent, getEvents, suspendOrApproveEvent } from '../reducers/EventsReducer'
+import { deleteEvent, getEventById, getEvents, suspendOrApproveEvent } from '../reducers/EventsReducer'
 
 const initialState = {
 	events: [],
+	event: null,
 	loading: false,
 	error: null,
 };
@@ -23,6 +24,21 @@ export const eventSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(getEvents.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//get event by id
+
+		builder.addCase(getEventById.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(getEventById.fulfilled, (state, action) => {
+			state.loading = false;
+			state.event = action.payload;
+			state.error = false;
+		});
+		builder.addCase(getEventById.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});

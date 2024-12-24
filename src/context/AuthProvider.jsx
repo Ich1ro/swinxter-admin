@@ -34,6 +34,31 @@ export const AuthProvider = ({ children }) => {
 		);
 	};
 
+	const register = async details => {
+		setLoading(true);
+		setError(null);
+
+		await toast.promise(
+			axios
+				.post('https://swinxter-back.onrender.com/admin/signup', details)
+				.then(res => {
+					setCurrentUser(res.data);
+				})
+				.catch(err => {
+					setError(err.message);
+					throw new Error('Login error');
+				})
+				.finally(() => {
+					setLoading(false);
+				}),
+			{
+				loading: 'Registration...',
+				success: 'Registration success!',
+				error: 'Registration error!',
+			}
+		);
+	};
+
 	const logout = () => {
 		setCurrentUser(null);
 		localStorage.removeItem('currentUser');
@@ -65,7 +90,7 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ currentUser, setCurrentUser, login, logout, loading, error }}
+			value={{ currentUser, setCurrentUser, login, register, logout, loading, error }}
 		>
 			{children}
 		</AuthContext.Provider>

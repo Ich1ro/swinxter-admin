@@ -29,12 +29,58 @@ const Admins = () => {
 	// };
 
 	const handleDelete = async id => {
-		await toast.promise(dispatch(deleteAdmin({ id: id })).unwrap(), {
-			loading: 'Admin deletion...',
-			success: () => `Admin successfully deleted!`,
-			error: err => `${err}`,
-		});
+		// await toast.promise(dispatch(deleteAdmin({ id: id })).unwrap(), {
+		// 	loading: 'Admin deletion...',
+		// 	success: () => `Admin successfully deleted!`,
+		// 	error: err => `${err}`,
+		// });
 		console.log(`Admin with ID ${id} deleted.`);
+		toast(
+			(t) => (
+				<div>
+					<p style={{ marginBottom: '10px' }}>Are you sure you want to delete this admin user?</p>
+					<div style={{ display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
+						<button
+							onClick={async () => {
+								await toast.promise(dispatch(deleteAdmin({ id: id })).unwrap(), {
+									loading: 'User deletion...',
+									success: 'User successfully deleted!',
+									error: err => `${err}`,
+								});
+								console.log(`User with ID ${id} deleted.`);
+								toast.dismiss(t.id);
+							}}
+							style={{
+								padding: '2px 8px',
+								backgroundColor: '#b64a4a',
+								color: '#fff',
+								border: 'none',
+								borderRadius: '4px',
+								cursor: 'pointer',
+							}}
+						>
+							Yes
+						</button>
+						<button
+							onClick={() => toast.dismiss(t.id)}
+							style={{
+								padding: '2px 8px',
+								backgroundColor: '#4caf50',
+								color: '#fff',
+								border: 'none',
+								borderRadius: '4px',
+								cursor: 'pointer',
+							}}
+						>
+							No
+						</button>
+					</div>
+				</div>
+			),
+			{
+				duration: Infinity,
+			}
+		);
 	};
 
 	const columns = [

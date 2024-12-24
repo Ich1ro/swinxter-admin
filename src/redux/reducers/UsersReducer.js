@@ -13,6 +13,18 @@ export const getUsers = createAsyncThunk('users', async () => {
 	}
 });
 
+export const getUserById = createAsyncThunk('user', async (data) => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/findOne/${data.id}`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 export const suspendOrApproveUser = createAsyncThunk(
 	'suspend_or_approve_user',
 	async (data, { rejectWithValue }) => {

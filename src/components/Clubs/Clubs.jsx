@@ -12,11 +12,13 @@ import {
 	getClubs,
 	suspendOrApproveClub,
 } from '../../redux/reducers/ClubsReducer';
+import { useNavigate } from 'react-router-dom'
 
 const Clubs = () => {
 	const [clubData, setClubsData] = useState([]);
 	const { clubs } = useSelector(state => state.club);
 	const dispatch = useDispatch();
+	const navigate = useNavigate()
 
 	const handleSuspendApprove = async (id, isActive) => {
 		await toast.promise(
@@ -32,12 +34,58 @@ const Clubs = () => {
 	};
 
 	const handleDelete = async id => {
-		await toast.promise(dispatch(deleteClub({ id: id })).unwrap(), {
-			loading: 'Club deletion...',
-			success: () => `Club successfully deleted!`,
-			error: err => `${err}`,
-		});
+		// await toast.promise(dispatch(deleteClub({ id: id })).unwrap(), {
+		// 	loading: 'Club deletion...',
+		// 	success: () => `Club successfully deleted!`,
+		// 	error: err => `${err}`,
+		// });
 		console.log(`Club with ID ${id} deleted.`);
+		toast(
+			(t) => (
+				<div>
+					<p style={{ marginBottom: '10px' }}>Are you sure you want to delete this club?</p>
+					<div style={{ display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
+						<button
+							onClick={async () => {
+								await toast.promise(dispatch(deleteClub({ id: id })).unwrap(), {
+									loading: 'User deletion...',
+									success: 'User successfully deleted!',
+									error: err => `${err}`,
+								});
+								console.log(`User with ID ${id} deleted.`);
+								toast.dismiss(t.id);
+							}}
+							style={{
+								padding: '2px 8px',
+								backgroundColor: '#b64a4a',
+								color: '#fff',
+								border: 'none',
+								borderRadius: '4px',
+								cursor: 'pointer',
+							}}
+						>
+							Yes
+						</button>
+						<button
+							onClick={() => toast.dismiss(t.id)}
+							style={{
+								padding: '2px 8px',
+								backgroundColor: '#4caf50',
+								color: '#fff',
+								border: 'none',
+								borderRadius: '4px',
+								cursor: 'pointer',
+							}}
+						>
+							No
+						</button>
+					</div>
+				</div>
+			),
+			{
+				duration: Infinity,
+			}
+		);
 	};
 
 	const columns = [
@@ -66,6 +114,26 @@ const Clubs = () => {
 					</button>
 				);
 			},
+		},
+		{
+			field: 'details',
+			headerName: 'Details',
+			width: 100,
+			renderCell: params => (
+				<button
+					onClick={() => navigate(`../club/${params.row._id}`)}
+					style={{
+						padding: '2px 8px',
+						backgroundColor: '#3f51b5',
+						color: '#fff',
+						border: 'none',
+						borderRadius: '4px',
+						cursor: 'pointer',
+					}}
+				>
+					Details
+				</button>
+			),
 		},
 		{
 			field: 'delete',

@@ -57,7 +57,7 @@ const Sidebar = () => {
 						isPending ? s.pending : isActive ? s.active : ''
 					}
 				>
-					Travels
+					Situationships
 				</NavLink>
 				<NavLink
 					to={'/admins'}

@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteClub, getClubs, suspendOrApproveClub } from '../reducers/ClubsReducer'
+import { deleteClub, getClubById, getClubs, suspendOrApproveClub } from '../reducers/ClubsReducer'
 
 const initialState = {
 	clubs: [],
+	club: null,
 	loading: false,
 	error: null,
 };
@@ -23,6 +24,21 @@ export const clubSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(getClubs.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//get club by id
+
+		builder.addCase(getClubById.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(getClubById.fulfilled, (state, action) => {
+			state.loading = false;
+			state.club = action.payload;
+			state.error = false;
+		});
+		builder.addCase(getClubById.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});
