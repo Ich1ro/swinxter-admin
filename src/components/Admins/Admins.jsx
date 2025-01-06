@@ -87,7 +87,7 @@ const Admins = () => {
 		{ field: 'name', headerName: 'Name', width: 150 },
 		{ field: 'username', headerName: 'Username', width: 150 },
 		{ field: 'events', headerName: 'Events', width: 100 },
-		{ field: 'clubs', headerName: 'Clubs', width: 100 },
+		{ field: 'clubs', headerName: 'Businesses', width: 100 },
 		{ field: 'situationships', headerName: 'Situationships', width: 100 },
 		{ field: 'users', headerName: 'Users', width: 100 },
 		{ field: 'admins', headerName: 'Admins', width: 100 },

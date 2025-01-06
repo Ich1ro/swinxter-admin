@@ -49,7 +49,7 @@ const Sidebar = () => {
 						isPending ? s.pending : isActive ? s.active : ''
 					}
 				>
-					Clubs
+					Businesses
 				</NavLink>
 				<NavLink
 					to={'/travels'}

@@ -34,7 +34,7 @@ const ClubDetails = () => {
 		<>
 			<div className={s.title}>
 				<Link to={'/clubs'}>{`<- Back`}</Link>
-				<h2>Club Details</h2>
+				<h2>Business Details</h2>
 				<div></div>
 			</div>
 			<div className={s.details_page}>

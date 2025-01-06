@@ -24,13 +24,13 @@ const Clubs = () => {
 		await toast.promise(
 			dispatch(suspendOrApproveClub({ id, suspend: isActive })).unwrap(),
 			{
-				loading: isActive ? 'Suspending club...' : 'Approving club...',
+				loading: isActive ? 'Suspending business...' : 'Approving business...',
 				success: () =>
-					`Club ${isActive ? 'suspended' : 'approved'} successfully!`,
+					`Business ${isActive ? 'suspended' : 'approved'} successfully!`,
 				error: err => `${err}`,
 			}
 		);
-		console.log(`Club with ID ${id} suspended.`);
+		console.log(`Business with ID ${id} suspended.`);
 	};
 
 	const handleDelete = async id => {
@@ -43,7 +43,7 @@ const Clubs = () => {
 		toast(
 			(t) => (
 				<div>
-					<p style={{ marginBottom: '10px' }}>Are you sure you want to delete this club?</p>
+					<p style={{ marginBottom: '10px' }}>Are you sure you want to delete this business?</p>
 					<div style={{ display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
 						<button
 							onClick={async () => {
@@ -177,7 +177,7 @@ const Clubs = () => {
 
 	return (
 		<div className={s.clubs}>
-			<h2 className={s.title}>Clubs</h2>
+			<h2 className={s.title}>Businesses</h2>
 			<ThemeProvider theme={darkTheme}>
 				<DataGrid
 					rows={clubData}
