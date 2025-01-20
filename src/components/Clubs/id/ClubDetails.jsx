@@ -108,7 +108,7 @@ const ClubDetails = () => {
 			</div> */}
 
 				<div className={s.comments_section}>
-					<h2>Comments</h2>
+					<h2>Reviews</h2>
 					{clubData?.comments.length > 0 ? (
 						<>
 							{clubData?.comments.map((comment, idx) => (
@@ -123,7 +123,7 @@ const ClubDetails = () => {
 							))}
 						</>
 					) : (
-						<p>No comments yet.</p>
+						<p>No reviews yet.</p>
 					)}
 				</div>
 			</div>
