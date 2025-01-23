@@ -41,9 +41,9 @@ export const AuthProvider = ({ children }) => {
 		await toast.promise(
 			axios
 				.post('https://swinxter-back.onrender.com/admin/signup', details)
-				.then(res => {
-					setCurrentUser(res.data);
-				})
+				// .then(res => {
+				// 	// setCurrentUser(res.data);
+				// })
 				.catch(err => {
 					setError(err.message);
 					throw new Error('Login error');

@@ -27,6 +27,70 @@ export const getTravelById = createAsyncThunk('travelById', async (data) => {
 	}
 });
 
+export const getResorts = createAsyncThunk('get_resorts', async () => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_resorts`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const getResortById = createAsyncThunk('resortById', async (data) => {
+	try {
+		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_resort/${data.id}`);
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const createResort = createAsyncThunk('create_resort', async (data) => {
+	try {
+		const res = await axios.post(`https://swinxter-back.onrender.com/api/create_resort`, {
+			data: data
+		});
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const updateResort = createAsyncThunk('update_resort', async (data) => {
+	try {
+		const res = await axios.post(`https://swinxter-back.onrender.com/api/update_resort/${data.id}`, {
+			...data.updatedData
+		});
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const deleteResort = createAsyncThunk('delete_resort', async (data) => {
+	try {
+		const res = await axios.delete(`https://swinxter-back.onrender.com/api/delete_resort/${data.id}` );
+
+		console.log(res.data);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 export const suspendOrApproveTravel = createAsyncThunk(
 	'suspend_or_approve_travel',
 	async (data, { rejectWithValue }) => {

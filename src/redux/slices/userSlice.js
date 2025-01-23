@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteUser, getUserById, getUsers, suspendOrApproveUser } from '../reducers/UsersReducer';
+import { deleteUser, getUserById, getUsers, suspendOrApproveUser, updateUserMembership } from '../reducers/UsersReducer';
 
 const initialState = {
 	users: [],
@@ -54,6 +54,21 @@ export const userSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(suspendOrApproveUser.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//approve or suspend user
+
+		builder.addCase(updateUserMembership.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(updateUserMembership.fulfilled, (state) => {
+			state.loading = false;
+			// state.users = action.payload;
+			state.error = false;
+		});
+		builder.addCase(updateUserMembership.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});

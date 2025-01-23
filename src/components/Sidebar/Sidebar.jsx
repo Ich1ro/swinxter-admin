@@ -27,46 +27,56 @@ const Sidebar = () => {
 				>
 					Dashboard
 				</NavLink>
-				<NavLink
-					to={'/users'}
-					className={({ isActive, isPending }) =>
-						isPending ? s.pending : isActive ? s.active : ''
-					}
-				>
-					Users
-				</NavLink>
-				<NavLink
-					to={'/events'}
-					className={({ isActive, isPending }) =>
-						isPending ? s.pending : isActive ? s.active : ''
-					}
-				>
-					Events
-				</NavLink>
-				<NavLink
-					to={'/clubs'}
-					className={({ isActive, isPending }) =>
-						isPending ? s.pending : isActive ? s.active : ''
-					}
-				>
-					Businesses
-				</NavLink>
-				<NavLink
-					to={'/travels'}
-					className={({ isActive, isPending }) =>
-						isPending ? s.pending : isActive ? s.active : ''
-					}
-				>
-					Situationships
-				</NavLink>
-				<NavLink
-					to={'/admins'}
-					className={({ isActive, isPending }) =>
-						isPending ? s.pending : isActive ? s.active : ''
-					}
-				>
-					Admins
-				</NavLink>
+				{currentUser.users && (
+					<NavLink
+						to={'/users'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Users
+					</NavLink>
+				)}
+				{currentUser.events && (
+					<NavLink
+						to={'/events'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Events
+					</NavLink>
+				)}
+				{currentUser.clubs && (
+					<NavLink
+						to={'/clubs'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Businesses
+					</NavLink>
+				)}
+				{currentUser.situationships && (
+					<NavLink
+						to={'/travels'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Situationships
+					</NavLink>
+				)}
+				{currentUser.admins && (
+					<NavLink
+						to={'/admins'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Admins
+					</NavLink>
+				)}
 			</div>
 			<button className={s.logout} onClick={handleLogout}>
 				Logout

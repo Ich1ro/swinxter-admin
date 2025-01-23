@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteAdmin, getAdmins } from '../reducers/AdminsReducer'
+import { deleteAdmin, getAdmins, updateAdmin } from '../reducers/AdminsReducer'
 
 const initialState = {
 	admins: [],
@@ -38,6 +38,21 @@ export const adminSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(deleteAdmin.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//delete admin
+
+		builder.addCase(updateAdmin.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(updateAdmin.fulfilled, (state) => {
+			state.loading = false;
+			// state.admins = action.payload;
+			state.error = false;
+		});
+		builder.addCase(updateAdmin.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});

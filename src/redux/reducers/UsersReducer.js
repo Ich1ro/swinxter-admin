@@ -45,6 +45,26 @@ export const suspendOrApproveUser = createAsyncThunk(
 	}
 );
 
+export const updateUserMembership = createAsyncThunk(
+	'update-user-membership',
+	async (data, { rejectWithValue }) => {
+		try {
+			const res = await axios.post(
+				`https://swinxter-back.onrender.com/api/update-user-membership/${data.id}`,
+				{data: data.updatedData}
+			);
+			console.log(res.data);
+
+			return res.data;
+		} catch (error) {
+			console.log(error);
+			return rejectWithValue(
+				error.request.status ? "User not found" : "Something went wrong"
+			);
+		}
+	}
+);
+
 export const deleteUser = createAsyncThunk(
 	'delete_user',
 	async (data, { rejectWithValue }) => {

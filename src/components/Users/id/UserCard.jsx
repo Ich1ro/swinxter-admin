@@ -2,7 +2,7 @@
 import s from './styles.module.scss';
 import user_image from '../../../assets/user-profile.png';
 
-const UserCard = ({ profile_type, username, title, userData, location, payment }) => {
+const UserCard = ({ profile_type, username, title, userData, location }) => {
 	const formatDate = date =>
 		date ? new Date(date).toLocaleDateString() : 'Not specified';
 	return (
@@ -37,14 +37,14 @@ const UserCard = ({ profile_type, username, title, userData, location, payment }
 					? `${location?.city}, ${location?.state}, ${location?.country}`
 					: 'Not specified'}
 			</p>
-			<p>
+			{/* <p>
 				<strong>Subscription Plan:</strong>{' '}
 				{payment?.membership_plan || 'Free Plan'}
 			</p>
 			<p>
 				<strong>Membership Expiry:</strong>{' '}
 				{formatDate(payment?.membership_expiry)}
-			</p>
+			</p> */}
 		</div>
 	);
 };
