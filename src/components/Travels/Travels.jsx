@@ -23,12 +23,11 @@ const Travels = () => {
 	const [resortData, setResortData] = useState([]);
 	const [newResort, setNewResort] = useState({
 		name: '',
-		label: '',
 	});
 	const [isOpen, setIsOpen] = useState(false);
 	const [editMode, setEditMode] = useState(false);
 	const [isTravel, setIsTravel] = useState(true);
-	const { travels, resorts, resort } = useSelector(state => state.travel);
+	const { travels, resorts } = useSelector(state => state.travel);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -64,7 +63,9 @@ const Travels = () => {
 						<button
 							onClick={async () => {
 								await toast.promise(
-									dispatch(deleteTravel({ id: id })).unwrap().then(() => dispatch(getTravels())),
+									dispatch(deleteTravel({ id: id }))
+										.unwrap()
+										.then(() => dispatch(getTravels())),
 									{
 										loading: 'Situationship deletion...',
 										success: 'Situationship successfully deleted!',
@@ -126,7 +127,9 @@ const Travels = () => {
 						<button
 							onClick={async () => {
 								await toast.promise(
-									dispatch(deleteResort({ id: id })).unwrap().then(() => dispatch(getResorts())),
+									dispatch(deleteResort({ id: id }))
+										.unwrap()
+										.then(() => dispatch(getResorts())),
 									{
 										loading: 'Resort deletion...',
 										success: 'Resort successfully deleted!',
@@ -177,7 +180,6 @@ const Travels = () => {
 						id: newResort._id,
 						updatedData: {
 							name: newResort.name,
-							label: newResort.label,
 						},
 					})
 				)
@@ -198,7 +200,6 @@ const Travels = () => {
 		setIsOpen(false);
 		setNewResort({
 			name: '',
-			label: '',
 		});
 		setEditMode(false);
 	};
@@ -314,8 +315,7 @@ const Travels = () => {
 	];
 
 	const columns2 = [
-		{ field: 'name', headerName: 'Name', width: 150 },
-		{ field: 'label', headerName: 'Label', width: 150 },
+		{ field: 'name', headerName: 'Name', width: 500 },
 		{
 			field: 'edit',
 			headerName: 'Edit',
@@ -368,7 +368,7 @@ const Travels = () => {
 	}, [travels]);
 
 	useEffect(() => {
-		setResortData(resorts)
+		setResortData(resorts);
 	}, [resorts]);
 
 	useEffect(() => {
@@ -401,23 +401,13 @@ const Travels = () => {
 								}
 							/>
 						</label>
-						<label>
-							Label:
-							<input
-								type='text'
-								value={newResort.label}
-								onChange={e =>
-									setNewResort({ ...newResort, label: e.target.value })
-								}
-							/>
-						</label>
+
 						<div className={s.modalActions}>
 							<button onClick={handleSaveNewResort}>Save</button>
 							<button
 								onClick={() => {
 									setNewResort({
 										name: '',
-										label: '',
 									});
 									setIsOpen(false);
 									setEditMode(false);
