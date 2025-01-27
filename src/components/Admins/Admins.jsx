@@ -173,6 +173,7 @@ const Admins = () => {
 		{ field: 'admins', headerName: 'Admins', width: 100 },
 		{
 			field: 'edit',
+			sortable: false,
 			headerName: 'Edit',
 			width: 100,
 			renderCell: params => {
@@ -224,6 +225,7 @@ const Admins = () => {
 		// },
 		{
 			field: 'delete',
+			sortable: false,
 			headerName: 'Delete',
 			width: 150,
 			renderCell: params => (

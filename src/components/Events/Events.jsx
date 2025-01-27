@@ -93,6 +93,7 @@ const Events = () => {
 		{ field: 'type', headerName: 'Type', width: 200 },
 		{
 			field: 'eventDuration',
+			sortable: false,
 			headerName: 'Event Duration',
 			width: 300,
 			renderCell: params => {
@@ -120,6 +121,7 @@ const Events = () => {
 		},
 		{
 			field: 'status',
+			sortable: false,
 			headerName: 'Status',
 			width: 150,
 			renderCell: params => {
@@ -143,6 +145,7 @@ const Events = () => {
 		},
 		{
 			field: 'details',
+			sortable: false,
 			headerName: 'Details',
 			width: 100,
 			renderCell: params => (
@@ -163,6 +166,7 @@ const Events = () => {
 		},
 		{
 			field: 'delete',
+			sortable: false,
 			headerName: 'Delete',
 			width: 150,
 			renderCell: params => (

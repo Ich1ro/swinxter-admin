@@ -89,12 +89,13 @@ const Clubs = () => {
 	};
 
 	const columns = [
-		{ field: 'clubname', headerName: 'Name', width: 150 },
+		{ field: 'business_name', headerName: 'Name', width: 150 },
 		{ field: 'owner_name', headerName: 'Owner', width: 200 },
-		{ field: 'clubtype', headerName: 'Type', width: 200 },
+		{ field: 'business_type', headerName: 'Type', width: 200 },
 		{
 			field: 'status',
 			headerName: 'Status',
+			sortable: false,
 			width: 150,
 			renderCell: params => {
 				const isActive = params.row.isverify;
@@ -117,6 +118,7 @@ const Clubs = () => {
 		},
 		{
 			field: 'details',
+			sortable: false,
 			headerName: 'Details',
 			width: 100,
 			renderCell: params => (
@@ -137,6 +139,7 @@ const Clubs = () => {
 		},
 		{
 			field: 'delete',
+			sortable: false,
 			headerName: 'Delete',
 			width: 150,
 			renderCell: params => (

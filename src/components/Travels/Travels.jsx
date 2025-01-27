@@ -217,6 +217,7 @@ const Travels = () => {
 		{
 			field: 'location',
 			headerName: 'Location',
+			sortable: false,
 			width: 200,
 			renderCell: params => {
 				return `${params.row.locationto.display_name}`;
@@ -225,6 +226,7 @@ const Travels = () => {
 		{
 			field: 'travelDuration',
 			headerName: 'Travel Duration',
+			sortable: false,
 			width: 210,
 			renderCell: params => {
 				const { startDate, endDate } = params.row;
@@ -252,6 +254,7 @@ const Travels = () => {
 		{
 			field: 'status',
 			headerName: 'Status',
+			sortable: false,
 			width: 100,
 			renderCell: params => {
 				const isActive = params.row.isVerify;
@@ -275,6 +278,7 @@ const Travels = () => {
 		{
 			field: 'details',
 			headerName: 'Details',
+			sortable: false,
 			width: 100,
 			renderCell: params => (
 				<button
@@ -295,6 +299,7 @@ const Travels = () => {
 		{
 			field: 'delete',
 			headerName: 'Delete',
+			sortable: false,
 			width: 100,
 			renderCell: params => (
 				<button

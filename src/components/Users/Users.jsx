@@ -97,6 +97,7 @@ const Users = () => {
 		{ field: 'profile_type', headerName: 'Type', width: 100 },
 		{
 			field: 'payment',
+			sortable: false,
 			headerName: 'Subscription',
 			width: 150,
 			renderCell: params => {
@@ -128,6 +129,7 @@ const Users = () => {
 		{
 			field: 'age',
 			headerName: 'Age',
+			sortable: false,
 			width: 100,
 			renderCell: params => {
 				const calculateAge = dob => {
@@ -167,6 +169,7 @@ const Users = () => {
 		{
 			field: 'status',
 			headerName: 'Status',
+			sortable: false,
 			width: 100,
 			renderCell: params => {
 				const isActive = params.row.isVerify;
@@ -190,6 +193,7 @@ const Users = () => {
 		{
 			field: 'details',
 			headerName: 'Details',
+			sortable: false,
 			width: 100,
 			renderCell: params => (
 				<button
@@ -210,6 +214,7 @@ const Users = () => {
 		{
 			field: 'delete',
 			headerName: 'Delete',
+			sortable: false,
 			width: 100,
 			renderCell: params => (
 				<button
