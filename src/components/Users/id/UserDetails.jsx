@@ -9,7 +9,7 @@ import {
 	updateUserMembership,
 } from '../../../redux/reducers/UsersReducer';
 import UserCard from './UserCard';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 
 const UserDetails = () => {
 	const [userData, setUserData] = useState(null);
@@ -19,11 +19,21 @@ const UserDetails = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [membershipData, setMembershipData] = useState({
 		membership: user?.payment?.membership || false,
-		membership_plan: user?.payment?.membership_plan || '',
+		membership_plan: user?.payment?.membership_plan || 'Free Plan',
 		membership_price: user?.payment?.membership_price || '',
 		membership_expiry: user?.payment?.membership_expiry || '',
 		membership_pause: user?.payment?.membership_pause || false,
 	});
+
+	const plans = [
+		'Free Plan',
+		'3 Days',
+		'1 Week',
+		'1 Month',
+		'3 Months',
+		'6 Months',
+		'9 Months',
+	];
 
 	const handleInputChange = e => {
 		const { name, value, type, checked } = e.target;
@@ -35,19 +45,12 @@ const UserDetails = () => {
 
 	const handleSave = async () => {
 		try {
-			const updatedData = {
-				membership: membershipData.membership,
-				membership_plan: membershipData.membership_plan,
-				membership_price: membershipData.membership_price,
-				membership_expiry: new Date(
-					membershipData.membership_expiry
-				).toISOString(),
-				membership_pause: membershipData.membership_pause,
-			};
-
 			const data = {
 				id: id,
-				updatedData,
+				updatedData: {
+					plan: membershipData.membership_plan,
+					pause: membershipData.membership_pause,
+				},
 			};
 
 			await dispatch(updateUserMembership(data))
@@ -71,7 +74,7 @@ const UserDetails = () => {
 		setUserData(user);
 		setMembershipData({
 			membership: user?.payment?.membership || false,
-			membership_plan: user?.payment?.membership_plan || '',
+			membership_plan: user?.payment?.membership_plan || 'Free Plan',
 			membership_price: user?.payment?.membership_price || '',
 			membership_expiry: user?.payment?.membership_expiry || '',
 			membership_pause: user?.payment?.membership_pause || false,
@@ -135,56 +138,29 @@ const UserDetails = () => {
 			<div className={s.single_user} style={{ marginTop: '20px' }}>
 				<h3 style={{ marginTop: '0' }}>Membership Details</h3>
 
-				{ isEditing ? (
+				{isEditing ? (
 					<div className={s.inputs}>
 						<label>
-							Membership:
-							<input
-								type='checkbox'
-								name='membership'
-								checked={membershipData?.membership}
-								onChange={handleInputChange}
-							/>
-						</label>
-						{/* <label>
 							Plan:
-							<input
-								type='text'
+							<select
 								name='membership_plan'
 								value={membershipData.membership_plan}
 								onChange={handleInputChange}
-							/>
-						</label> */}
-						{/* <label>
-							Price:
-							<input
-								type='text'
-								name='membership_price'
-								value={membershipData.membership_price}
-								onChange={handleInputChange}
-							/>
-						</label> */}
-						<label>
-							Expiry:
-							<input
-								type='datetime-local'
-								name='membership_expiry'
-								value={
-									membershipData?.membership_expiry
-										? new Date(membershipData?.membership_expiry)
-												.toISOString()
-												.slice(0, 16)
-										: ''
-								}
-								onChange={handleInputChange}
-							/>
+								disabled={membershipData.membership_pause}
+							>
+								{plans.map(plan => (
+									<option key={plan} value={plan}>
+										{plan}
+									</option>
+								))}
+							</select>
 						</label>
 						<label>
 							Pause Membership:
 							<input
 								type='checkbox'
 								name='membership_pause'
-								checked={membershipData?.membership_pause}
+								checked={membershipData.membership_pause}
 								onChange={handleInputChange}
 							/>
 						</label>
@@ -196,9 +172,11 @@ const UserDetails = () => {
 						<p>
 							<strong>Plan:</strong> {user?.payment?.membership_plan}
 						</p>
-						<p>
-							<strong>Price:</strong> ${user?.payment?.membership_price}
-						</p>
+						{user?.payment?.membership_price && (
+							<p>
+								<strong>Price:</strong> {user?.payment?.membership_price}
+							</p>
+						)}
 						<p>
 							<strong>Expiry:</strong>{' '}
 							{new Date(user?.payment?.membership_expiry).toLocaleString()}

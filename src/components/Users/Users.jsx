@@ -99,11 +99,20 @@ const Users = () => {
 			field: 'payment',
 			sortable: false,
 			headerName: 'Subscription',
-			width: 150,
+			width: 100,
 			renderCell: params => {
 				return params.row.payment?.membership_plan
 					? params.row.payment.membership_plan
 					: 'Free Plan';
+			},
+		},
+		{
+			field: 'membership_pause',
+			sortable: false,
+			headerName: 'Membership Pause',
+			width: 100,
+			renderCell: params => {
+				return `${params.row?.payment?.membership_pause}`		
 			},
 		},
 		{
