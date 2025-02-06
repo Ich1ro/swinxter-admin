@@ -228,7 +228,7 @@ const Travels = () => {
 				) {
 					return `${params?.row?.location?.address}, ${params?.row?.location?.city}, ${params?.row?.location?.state}, ${params?.row?.location?.country}`;
 				}
-				
+				return `Location doesn't provided`
 			},
 		},
 		{
