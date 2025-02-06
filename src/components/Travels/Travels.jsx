@@ -220,7 +220,15 @@ const Travels = () => {
 			sortable: false,
 			width: 200,
 			renderCell: params => {
-				return `${params.row.locationto.display_name}`;
+				if (
+					params?.row?.location?.address &&
+					params?.row?.location?.city &&
+					params?.row?.location?.state &&
+					params?.row?.location?.country
+				) {
+					return `${params?.row?.location?.address}, ${params?.row?.location?.city}, ${params?.row?.location?.state}, ${params?.row?.location?.country}`;
+				}
+				
 			},
 		},
 		{
