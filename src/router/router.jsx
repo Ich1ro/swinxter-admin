@@ -12,6 +12,8 @@ import UserDetails from '../components/Users/id/UserDetails.jsx'
 import EventDetails from '../components/Events/id/EventDetails.jsx'
 import ClubDetails from '../components/Clubs/id/ClubDetails.jsx'
 import TravelDetails from '../components/Travels/id/TravelDetails.jsx'
+import Banners from '../components/Banners/Banners.jsx'
+import Banner from '../components/Banners/id/Banner.jsx'
 
 export const router = createBrowserRouter([
 	{
@@ -63,6 +65,14 @@ export const router = createBrowserRouter([
 			{
 				path: 'admins',
 				element: <Admins />,
+			},
+			{
+				path: 'banners',
+				element: <Banners />,
+			},
+			{
+				path: 'banner/:id',
+				element: <Banner />,
 			},
 		],
 	},

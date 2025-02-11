@@ -69,6 +69,16 @@ const Sidebar = () => {
 				)}
 				{currentUser.admins && (
 					<NavLink
+						to={'/banners'}
+						className={({ isActive, isPending }) =>
+							isPending ? s.pending : isActive ? s.active : ''
+						}
+					>
+						Banners
+					</NavLink>
+				)}
+				{currentUser.admins && (
+					<NavLink
 						to={'/admins'}
 						className={({ isActive, isPending }) =>
 							isPending ? s.pending : isActive ? s.active : ''

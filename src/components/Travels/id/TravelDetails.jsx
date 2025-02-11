@@ -56,14 +56,20 @@ const TravelDetails = () => {
 					</p>
 					<p>
 						<strong>Start Date:</strong>{' '}
-						{new Date(travelData?.startDate).toLocaleString() || 'Not specified.'}
+						{new Date(travelData?.startDate).toLocaleString() ||
+							'Not specified.'}
 					</p>
 					<p>
 						<strong>End Date:</strong>{' '}
 						{new Date(travelData?.endDate).toLocaleString() || 'Not specified.'}
 					</p>
 					<p>
-						<strong>Resort:</strong> {travelData?.resort || 'No resort information.'}
+						{travelData?.resort && (
+							<>
+								<strong>Resort:</strong>{' '}
+								{travelData?.resort || 'No resort information.'}
+							</>
+						)}
 					</p>
 					<p>
 						<strong>Interested:</strong>{' '}
