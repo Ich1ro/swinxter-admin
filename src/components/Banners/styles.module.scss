@@ -2,23 +2,30 @@
 	height: 90%;
 	width: 100%;
 
-	.title {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-bottom: 20px;
+}
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
 
-		.empty {
-			width: 35px;
-		}
+	.empty {
+		width: 85px;
+	}
 
-		&_item {
-			margin: 0;
-		}
+	&_item {
+		margin: 0;
+	}
 
-		> button {
-			background-color: #242424;
-		}
+	> button {
+		border: 1px solid #f58238;
+		background-color: #242424;
+		transition: all ease-in-out 0.5s;
+	}
+
+	> button:hover {
+		background-color: #f58238;
+		color: black;
 	}
 }
 

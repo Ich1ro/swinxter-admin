@@ -18,6 +18,14 @@
 
 		> button {
 			background-color: #242424;
+			border: 1px solid #f58238;
+
+			transition: all ease-in-out 0.5s;
+		}
+
+		> button:hover {
+			background-color: #f58238;
+			color: black;
 		}
 	}
 }
@@ -69,5 +77,4 @@
 			margin-bottom: 20px;
 		}
 	}
-	
 }
