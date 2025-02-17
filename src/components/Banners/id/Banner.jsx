@@ -3,8 +3,11 @@ import s from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { editBanner, getBannerById } from '../../../redux/reducers/bannerReducer';
-import toast from 'react-hot-toast'
+import {
+	editBanner,
+	getBannerById,
+} from '../../../redux/reducers/bannerReducer';
+import toast from 'react-hot-toast';
 
 const Banner = () => {
 	const [bannerData, setBannerData] = useState(null);
@@ -34,7 +37,7 @@ const Banner = () => {
 			}
 		);
 
-		setIsEdit(false)
+		setIsEdit(false);
 	};
 
 	useEffect(() => {
@@ -77,13 +80,17 @@ const Banner = () => {
 						<div>
 							<p>
 								<strong style={{ marginRight: '10px' }}>Page:</strong>
-								<input
-									type='text'
+								<select
 									value={bannerData?.page}
-									onChange={e => {
-										setBannerData({ ...bannerData, page: e.target.value });
-									}}
-								/>
+									onChange={e =>
+										setBannerData({ ...bannerData, page: e.target.value })
+									}
+								>
+									<option value=''>Select Option</option>
+									<option value='travel'>Travel</option>
+									<option value='event'>Event</option>
+									<option value='business'>Business</option>
+								</select>
 							</p>
 							<p>
 								<strong style={{ marginRight: '10px' }}>Active:</strong>

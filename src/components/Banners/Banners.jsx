@@ -47,7 +47,9 @@ const Banners = () => {
 						<button
 							onClick={async () => {
 								await toast.promise(
-									dispatch(deleteBanner({ id: id })).unwrap().then(() => dispatch(getBanners())),
+									dispatch(deleteBanner({ id: id }))
+										.unwrap()
+										.then(() => dispatch(getBanners())),
 									{
 										loading: 'Banner deletion...',
 										success: 'Banner successfully deleted!',
@@ -232,13 +234,17 @@ const Banners = () => {
 						</label>
 						<label>
 							Page:
-							<input
-								type='text'
+							<select
 								value={newBanner.page}
 								onChange={e =>
 									setNewBanner({ ...newBanner, page: e.target.value })
 								}
-							/>
+							>
+								<option value=''>Select Option</option>
+								<option value='travel'>Travel</option>
+								<option value='event'>Event</option>
+								<option value='business'>Business</option>
+							</select>
 						</label>
 						<label>
 							Active:
