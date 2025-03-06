@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createBanner, deleteBanner, editBanner, getBannerById, getBanners } from '../reducers/bannerReducer'
+import { createBanner, deleteBanner, editBanner, getBannerById, getBanners, suspendOrApproveBanner } from '../reducers/bannerReducer'
 
 const initialState = {
 	banners: [],
@@ -54,6 +54,21 @@ export const bannerSlice = createSlice({
 			state.error = false;
 		});
 		builder.addCase(createBanner.rejected, (state, error) => {
+			state.loading = false;
+			state.error = error.error.message;
+		});
+
+		//get banner by id
+
+		builder.addCase(suspendOrApproveBanner.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(suspendOrApproveBanner.fulfilled, (state, action) => {
+			state.loading = false;
+			state.banners = action.payload;
+			state.error = false;
+		});
+		builder.addCase(suspendOrApproveBanner.rejected, (state, error) => {
 			state.loading = false;
 			state.error = error.error.message;
 		});

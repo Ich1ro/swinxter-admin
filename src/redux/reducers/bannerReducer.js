@@ -29,6 +29,26 @@ export const getBannerById = createAsyncThunk('bannerById', async data => {
 	}
 });
 
+export const suspendOrApproveBanner = createAsyncThunk(
+	'suspend_or_approve_banner',
+	async (data, { rejectWithValue }) => {
+		try {
+			const res = await axios.post(
+				`https://swinxter-back.onrender.com/api/approve_banner/${data.id}`,
+				{suspend: data.suspend}
+			);
+			console.log(res.data);
+
+			return res.data;
+		} catch (error) {
+			console.log(error);
+			return rejectWithValue(
+				error.request.status ? "Banner not found" : "Something went wrong"
+			);
+		}
+	}
+);
+
 export const createBanner = createAsyncThunk(
 	'create_banner',
 	async (data, { rejectWithValue }) => {

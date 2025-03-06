@@ -11,6 +11,7 @@ import {
 	createBanner,
 	deleteBanner,
 	getBanners,
+	suspendOrApproveBanner,
 } from '../../redux/reducers/bannerReducer';
 
 const Banners = () => {
@@ -27,6 +28,19 @@ const Banners = () => {
 		page: '',
 		active: false,
 	});
+
+	const handleSuspendApprove = async (id, isApprove) => {
+		await toast.promise(
+			dispatch(suspendOrApproveBanner({ id, suspend: isApprove })).unwrap(),
+			{
+				loading: isApprove ? 'Suspending banner...' : 'Approving banner...',
+				success: () =>
+					`Banner ${isApprove ? 'suspended' : 'approved'} successfully!`,
+				error: err => `${err}`,
+			}
+		);
+		console.log(`Banner with ID ${id} suspended.`);
+	};
 
 	const handleDelete = async id => {
 		// await toast.promise(dispatch(deleteBanner({ id: id })).unwrap(), {
@@ -109,6 +123,30 @@ const Banners = () => {
 			},
 		},
 		{
+			field: 'status',
+			headerName: 'Status',
+			sortable: false,
+			width: 150,
+			renderCell: params => {
+				const isApprove = params.row.isApprove;
+				return (
+					<button
+						onClick={() => handleSuspendApprove(params.row._id, isApprove)}
+						style={{
+							padding: '2px 8px',
+							backgroundColor: isApprove ? '#f44336' : '#4caf50',
+							color: '#fff',
+							border: 'none',
+							borderRadius: '4px',
+							cursor: 'pointer',
+						}}
+					>
+						{isApprove ? 'Suspend' : 'Approve'}
+					</button>
+				);
+			},
+		},
+		{
 			field: 'details',
 			headerName: 'Details',
 			sortable: false,
@@ -129,6 +167,7 @@ const Banners = () => {
 				</button>
 			),
 		},
+
 		{
 			field: 'delete',
 			headerName: 'Delete',
