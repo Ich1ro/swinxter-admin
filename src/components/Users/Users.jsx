@@ -95,6 +95,7 @@ const Users = () => {
 	const columns = [
 		{ field: 'username', headerName: 'username', width: 150 },
 		{ field: 'profile_type', headerName: 'Type', width: 100 },
+		{ field: 'email', headerName: 'Email', width: 240 },
 		{
 			field: 'payment',
 			sortable: false,
@@ -110,7 +111,7 @@ const Users = () => {
 			field: 'membership_pause',
 			sortable: false,
 			headerName: 'Membership Pause',
-			width: 100,
+			width: 80,
 			renderCell: params => {
 				return `${params.row?.payment?.membership_pause}`		
 			},
@@ -139,7 +140,7 @@ const Users = () => {
 			field: 'age',
 			headerName: 'Age',
 			sortable: false,
-			width: 100,
+			width: 80,
 			renderCell: params => {
 				const calculateAge = dob => {
 					if (!dob) return 'Not specified';
