@@ -52,7 +52,7 @@ const ClubDetails = () => {
 						<strong>Introduction:</strong>{' '}
 						{clubData?.introduction || 'No introduction provided.'}
 					</p>
-					<p>
+					<p style={{wordWrap: 'break-word', wordBreak: 'break-word'}}>
 						<strong>Description:</strong>{' '}
 						{clubData?.description || 'No description available.'}
 					</p>

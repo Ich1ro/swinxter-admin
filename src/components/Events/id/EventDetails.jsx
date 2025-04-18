@@ -50,7 +50,7 @@ const EventDetails = () => {
 				</div>
 
 				<div className={s.info_section}>
-					<p>
+					<p style={{wordWrap: 'break-word', wordBreak: 'break-word'}}>
 						<strong>Description:</strong>{' '}
 						{eventData?.description || 'No description available.'}
 					</p>
@@ -69,7 +69,7 @@ const EventDetails = () => {
 					</p>
 					<p>
 						<strong>Location:</strong>{' '}
-						{eventData?.location?.display_name || 'No location specified.'}
+						{eventData?.location?.address ? `${eventData?.location?.address || ''} ${eventData?.location?.street || ''}, ${eventData?.location?.municipality || ''}, ${eventData?.location?.country || ''}` : 'No location specified.'}
 					</p>
 					<p>
 						<strong>Promoted:</strong> {eventData?.isPromoted ? 'Yes' : 'No'}
