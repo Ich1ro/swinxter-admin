@@ -35,7 +35,7 @@ const UserCard = ({ profile_type, username, title, userData, location }) => {
 				<strong>Location:</strong>{' '}
 				{location?.city && location?.state && location?.country
 					? `${location?.city}, ${location?.state}, ${location?.country}`
-					: 'Not specified'}
+					: `${location?.address} ${location?.street}, ${location?.municipality}, ${location?.country}`}
 			</p>
 			{/* <p>
 				<strong>Subscription Plan:</strong>{' '}

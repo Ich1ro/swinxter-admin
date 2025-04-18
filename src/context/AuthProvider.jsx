@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { AuthContext } from './AuthContext';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
 		await toast.promise(
 			axios
-				.post('https://swinxter-back.onrender.com/admin/login', details)
+				.post('https://app-api.swinxter.com/admin/login', details)
 				.then(res => {
 					setCurrentUser(res.data);
 				})
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
 
 		await toast.promise(
 			axios
-				.post('https://swinxter-back.onrender.com/admin/signup', details)
+				.post('https://app-api.swinxter.com/admin/signup', details)
 				// .then(res => {
 				// 	// setCurrentUser(res.data);
 				// })
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
 		if (savedUser) {
 			setCurrentUser(JSON.parse(savedUser));
 		}
-		setLoadingUser(false)
+		setLoadingUser(false);
 	}, []);
 
 	useEffect(() => {
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 	}, [currentUser]);
 
 	useEffect(() => {
-		console.log(currentUser);	
+		console.log(currentUser);
 	}, [currentUser]);
 
 	if (loadingUser) {
@@ -90,7 +90,15 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ currentUser, setCurrentUser, login, register, logout, loading, error }}
+			value={{
+				currentUser,
+				setCurrentUser,
+				login,
+				register,
+				logout,
+				loading,
+				error,
+			}}
 		>
 			{children}
 		</AuthContext.Provider>

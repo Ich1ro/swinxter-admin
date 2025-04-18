@@ -82,7 +82,7 @@ const ClubDetails = () => {
 					</p>
 					<p>
 						<strong>Location:</strong>{' '}
-						{clubData?.location?.display_name || 'No location specified.'}
+						{clubData?.location?.address ? `${clubData?.location?.address} ${clubData?.location?.street || ''}, ${clubData?.location?.municipality || ''}, ${clubData?.location?.country || ''}` : 'No location specified.'}
 					</p>
 					<p>
 						<strong>Verified:</strong> {clubData?.isverify ? 'Yes' : 'No'}

@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getTravels = createAsyncThunk('travels', async () => {
 	try {
 		const res = await axios.get(
-			'https://swinxter-back.onrender.com/api/search_travel'
+			'https://app-api.swinxter.com/api/search_travel'
 		);
 
 		console.log(res.data);
@@ -15,9 +15,11 @@ export const getTravels = createAsyncThunk('travels', async () => {
 	}
 });
 
-export const getTravelById = createAsyncThunk('travelById', async (data) => {
+export const getTravelById = createAsyncThunk('travelById', async data => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/travel/${data.id}`);
+		const res = await axios.get(
+			`https://app-api.swinxter.com/api/travel/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -29,7 +31,7 @@ export const getTravelById = createAsyncThunk('travelById', async (data) => {
 
 export const getResorts = createAsyncThunk('get_resorts', async () => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_resorts`);
+		const res = await axios.get(`https://app-api.swinxter.com/api/get_resorts`);
 
 		console.log(res.data);
 
@@ -39,9 +41,11 @@ export const getResorts = createAsyncThunk('get_resorts', async () => {
 	}
 });
 
-export const getResortById = createAsyncThunk('resortById', async (data) => {
+export const getResortById = createAsyncThunk('resortById', async data => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_resort/${data.id}`);
+		const res = await axios.get(
+			`https://app-api.swinxter.com/api/get_resort/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -51,11 +55,14 @@ export const getResortById = createAsyncThunk('resortById', async (data) => {
 	}
 });
 
-export const createResort = createAsyncThunk('create_resort', async (data) => {
+export const createResort = createAsyncThunk('create_resort', async data => {
 	try {
-		const res = await axios.post(`https://swinxter-back.onrender.com/api/create_resort`, {
-			data: data
-		});
+		const res = await axios.post(
+			`https://app-api.swinxter.com/api/create_resort`,
+			{
+				data: data,
+			}
+		);
 
 		console.log(res.data);
 
@@ -65,11 +72,14 @@ export const createResort = createAsyncThunk('create_resort', async (data) => {
 	}
 });
 
-export const updateResort = createAsyncThunk('update_resort', async (data) => {
+export const updateResort = createAsyncThunk('update_resort', async data => {
 	try {
-		const res = await axios.post(`https://swinxter-back.onrender.com/api/update_resort/${data.id}`, {
-			...data.updatedData
-		});
+		const res = await axios.post(
+			`https://app-api.swinxter.com/api/update_resort/${data.id}`,
+			{
+				...data.updatedData,
+			}
+		);
 
 		console.log(res.data);
 
@@ -79,9 +89,11 @@ export const updateResort = createAsyncThunk('update_resort', async (data) => {
 	}
 });
 
-export const deleteResort = createAsyncThunk('delete_resort', async (data) => {
+export const deleteResort = createAsyncThunk('delete_resort', async data => {
 	try {
-		const res = await axios.delete(`https://swinxter-back.onrender.com/api/delete_resort/${data.id}` );
+		const res = await axios.delete(
+			`https://app-api.swinxter.com/api/delete_resort/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -96,7 +108,7 @@ export const suspendOrApproveTravel = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.put(
-				`https://swinxter-back.onrender.com/api/approve_travel/${data.id}`,
+				`https://app-api.swinxter.com/api/approve_travel/${data.id}`,
 				{ suspend: data.suspend }
 			);
 			console.log(res.data);
@@ -116,7 +128,7 @@ export const deleteTravel = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.delete(
-				`https://swinxter-back.onrender.com/api/delete_travel/${data.id}`
+				`https://app-api.swinxter.com/api/delete_travel/${data.id}`
 			);
 
 			console.log(res.data);

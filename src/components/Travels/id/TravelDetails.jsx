@@ -52,7 +52,7 @@ const TravelDetails = () => {
 					</p>
 					<p>
 						<strong>Location:</strong>{' '}
-						{travelData?.locationto?.display_name || 'No location specified.'}
+						{travelData?.location?.address ? `${travelData?.location?.address} ${travelData?.location?.street}, ${travelData?.location?.municipality}, ${travelData?.location?.country}` : 'No location specified.'}
 					</p>
 					<p>
 						<strong>Start Date:</strong>{' '}

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getClubs = createAsyncThunk('clubs', async () => {
 	try {
-		const res = await axios.get('https://swinxter-back.onrender.com/api/search_club');
+		const res = await axios.get('https://app-api.swinxter.com/api/search_club');
 
 		console.log(res.data);
 
@@ -13,9 +13,11 @@ export const getClubs = createAsyncThunk('clubs', async () => {
 	}
 });
 
-export const getClubById = createAsyncThunk('clubById', async (data) => {
+export const getClubById = createAsyncThunk('clubById', async data => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/getClub/${data.id}`);
+		const res = await axios.get(
+			`https://app-api.swinxter.com/api/getClub/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -30,8 +32,8 @@ export const suspendOrApproveClub = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.put(
-				`https://swinxter-back.onrender.com/api/approve_club/${data.id}`,
-				{suspend: data.suspend}
+				`https://app-api.swinxter.com/api/approve_club/${data.id}`,
+				{ suspend: data.suspend }
 			);
 			console.log(res.data);
 
@@ -39,7 +41,7 @@ export const suspendOrApproveClub = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "Club not found" : "Something went wrong"
+				error.request.status ? 'Club not found' : 'Something went wrong'
 			);
 		}
 	}
@@ -50,7 +52,7 @@ export const deleteClub = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.delete(
-				`https://swinxter-back.onrender.com/api/delete_club/${data.id}`
+				`https://app-api.swinxter.com/api/delete_club/${data.id}`
 			);
 
 			console.log(res.data);
@@ -59,7 +61,7 @@ export const deleteClub = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "Club not found" : "Something went wrong"
+				error.request.status ? 'Club not found' : 'Something went wrong'
 			);
 		}
 	}

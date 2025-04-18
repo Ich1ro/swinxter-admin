@@ -143,6 +143,7 @@ const UserDetails = () => {
 						<label>
 							Plan:
 							<select
+								className={s.membership_select}
 								name='membership_plan'
 								value={membershipData.membership_plan}
 								onChange={handleInputChange}

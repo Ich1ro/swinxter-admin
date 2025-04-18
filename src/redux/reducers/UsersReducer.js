@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getUsers = createAsyncThunk('users', async () => {
 	try {
-		const res = await axios.get('https://swinxter-back.onrender.com/api/users');
+		const res = await axios.get('https://app-api.swinxter.com/api/users');
 
 		console.log(res.data);
 
@@ -13,9 +13,11 @@ export const getUsers = createAsyncThunk('users', async () => {
 	}
 });
 
-export const getUserById = createAsyncThunk('user', async (data) => {
+export const getUserById = createAsyncThunk('user', async data => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/findOne/${data.id}`);
+		const res = await axios.get(
+			`https://app-api.swinxter.com/api/findOne/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -30,8 +32,8 @@ export const suspendOrApproveUser = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.post(
-				`https://swinxter-back.onrender.com/api/approve_user/${data.id}`,
-				{suspend: data.suspend}
+				`https://app-api.swinxter.com/api/approve_user/${data.id}`,
+				{ suspend: data.suspend }
 			);
 			console.log(res.data);
 
@@ -39,7 +41,7 @@ export const suspendOrApproveUser = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "User not found" : "Something went wrong"
+				error.request.status ? 'User not found' : 'Something went wrong'
 			);
 		}
 	}
@@ -50,8 +52,8 @@ export const updateUserMembership = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.post(
-				`https://swinxter-back.onrender.com/api/update-user-membership/${data.id}`,
-				{data: data.updatedData}
+				`https://app-api.swinxter.com/api/update-user-membership/${data.id}`,
+				{ data: data.updatedData }
 			);
 			console.log(res.data);
 
@@ -59,7 +61,7 @@ export const updateUserMembership = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "User not found" : "Something went wrong"
+				error.request.status ? 'User not found' : 'Something went wrong'
 			);
 		}
 	}
@@ -70,7 +72,7 @@ export const deleteUser = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.delete(
-				`https://swinxter-back.onrender.com/api/delete_user/${data.id}`
+				`https://app-api.swinxter.com/api/delete_user/${data.id}`
 			);
 
 			console.log(res.data);
@@ -79,7 +81,7 @@ export const deleteUser = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "User not found" : "Something went wrong"
+				error.request.status ? 'User not found' : 'Something went wrong'
 			);
 		}
 	}

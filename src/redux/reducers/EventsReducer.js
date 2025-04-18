@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getEvents = createAsyncThunk('events', async () => {
 	try {
-		const res = await axios.get('https://swinxter-back.onrender.com/api/allevents');
+		const res = await axios.get('https://app-api.swinxter.com/api/allevents');
 
 		console.log(res.data);
 
@@ -13,9 +13,11 @@ export const getEvents = createAsyncThunk('events', async () => {
 	}
 });
 
-export const getEventById = createAsyncThunk('eventById', async (data) => {
+export const getEventById = createAsyncThunk('eventById', async data => {
 	try {
-		const res = await axios.get(`https://swinxter-back.onrender.com/api/get_event/${data.id}`);
+		const res = await axios.get(
+			`https://app-api.swinxter.com/api/get_event/${data.id}`
+		);
 
 		console.log(res.data);
 
@@ -30,8 +32,8 @@ export const suspendOrApproveEvent = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.post(
-				`https://swinxter-back.onrender.com/api/approve_event/${data.id}`,
-				{suspend: data.suspend}
+				`https://app-api.swinxter.com/api/approve_event/${data.id}`,
+				{ suspend: data.suspend }
 			);
 			console.log(res.data);
 
@@ -39,7 +41,7 @@ export const suspendOrApproveEvent = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "Event not found" : "Something went wrong"
+				error.request.status ? 'Event not found' : 'Something went wrong'
 			);
 		}
 	}
@@ -50,7 +52,7 @@ export const deleteEvent = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.delete(
-				`https://swinxter-back.onrender.com/api/delete_event/${data.id}`
+				`https://app-api.swinxter.com/api/delete_event/${data.id}`
 			);
 
 			console.log(res.data);
@@ -59,7 +61,7 @@ export const deleteEvent = createAsyncThunk(
 		} catch (error) {
 			console.log(error);
 			return rejectWithValue(
-				error.request.status ? "Event not found" : "Something went wrong"
+				error.request.status ? 'Event not found' : 'Something went wrong'
 			);
 		}
 	}

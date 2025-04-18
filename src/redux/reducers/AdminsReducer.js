@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getAdmins = createAsyncThunk('admins', async () => {
 	try {
 		const res = await axios.get(
-			'https://swinxter-back.onrender.com/admin/adminUsers'
+			'https://app-api.swinxter.com/admin/adminUsers'
 		);
 
 		console.log(res.data);
@@ -20,7 +20,7 @@ export const getAdmins = createAsyncThunk('admins', async () => {
 // 	async (data, { rejectWithValue }) => {
 // 		try {
 // 			const res = await axios.post(
-// 				`https://swinxter-back.onrender.com/api/approve_user/${data.id}`,
+// 				`https://app-api.swinxter.com/api/approve_user/${data.id}`,
 // 				{ suspend: data.suspend }
 // 			);
 // 			console.log(res.data);
@@ -40,8 +40,8 @@ export const updateAdmin = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.post(
-				`https://swinxter-back.onrender.com/admin/update_user/${data.id}`,
-				{data: data.updatedData}
+				`https://app-api.swinxter.com/admin/update_user/${data.id}`,
+				{ data: data.updatedData }
 			);
 
 			console.log(res.data);
@@ -61,7 +61,7 @@ export const deleteAdmin = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const res = await axios.delete(
-				`https://swinxter-back.onrender.com/admin/delete_user/${data.id}`
+				`https://app-api.swinxter.com/admin/delete_user/${data.id}`
 			);
 
 			console.log(res.data);

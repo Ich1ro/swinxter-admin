@@ -221,14 +221,11 @@ const Travels = () => {
 			width: 200,
 			renderCell: params => {
 				if (
-					params?.row?.location?.address &&
-					params?.row?.location?.city &&
-					params?.row?.location?.state &&
-					params?.row?.location?.country
+					params?.row?.location?.address
 				) {
 					return `${params?.row?.location?.address}, ${params?.row?.location?.city}, ${params?.row?.location?.state}, ${params?.row?.location?.country}`;
 				}
-				return `Location doesn't provided`
+				return `Not specified `
 			},
 		},
 		{
